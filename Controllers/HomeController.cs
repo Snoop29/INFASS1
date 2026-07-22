@@ -34,7 +34,19 @@ namespace BOOTSTRAP.Controllers
         [HttpPost]
         public IActionResult Register([FromBody] RegisterViewModel model)
         {
-            // TODO: validate inputs and create the account
+            User user = new User(model.FullName, model.Email, model.Password);
+
+            string[] fields = { "Name", "Email", "Password" };
+            object[] values = { model.FullName, model.Email, model.Password };
+
+            string query = user.GenerateInsertQuery("Users", fields, values);
+
+            return Json(new { query = query });
+        }
+        [HttpPost]
+        public IActionResult Login([FromBody] User model)
+        {
+            // TODO: validate credentials against the database later
             return Json(model);
         }
     }

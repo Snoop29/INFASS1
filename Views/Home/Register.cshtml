@@ -75,19 +75,13 @@
                     return;
                 }
 
-              $.ajax({
+                $.ajax({
                     url: '@Url.Action("Register", "Home")',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(formData),
                     success: function (response) {
-                        var message =
-                            'Full Name: ' + response.fullName + '\n' +
-                            'Email: ' + response.email + '\n' +
-                            'Password: ' + response.password + '\n' +
-                            'Confirm Password: ' + response.confirmPassword;
-
-                        alert(message);
+                        alert('Generated Query:\n' + response.query);
                     },
                     error: function (xhr) {
                         alert('Something went wrong. Status: ' + xhr.status);
