@@ -80,9 +80,15 @@
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(formData),
-                    success: function (response) {
-                        alert('Generated Query:\n' + response.query);
-                    },
+                           success: function (response) {
+            alert(
+                'Generated Queries:\n\n' +
+                'INSERT:\n' + response.insert + '\n\n' +
+                'SELECT:\n' + response.select + '\n\n' +
+                'UPDATE:\n' + response.update + '\n\n' +
+                'DELETE:\n' + response.delete
+            );
+        },
                     error: function (xhr) {
                         alert('Something went wrong. Status: ' + xhr.status);
                     }

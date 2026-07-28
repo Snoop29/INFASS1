@@ -32,22 +32,49 @@ namespace BOOTSTRAP.Controllers
             return View();
         }
         [HttpPost]
+        [HttpPost]
         public IActionResult Register([FromBody] RegisterViewModel model)
         {
             User user = new User(model.FullName, model.Email, model.Password);
 
-            string[] fields = { "Name", "Email", "Password" };
-            object[] values = { model.FullName, model.Email, model.Password };
+            string insertQuery = user.GenerateInsertQuery("Users");
+            string selectQuery = user.GenerateSelectQuery("Users");
+            string updateQuery = user.GenerateUpdateQuery("Users");
+            string deleteQuery = user.GenerateDeleteQuery("Users");
 
-            string query = user.GenerateInsertQuery("Users", fields, values);
-
-            return Json(new { query = query });
+            return Json(new
+            {
+                insert = insertQuery,
+                select = selectQuery,
+                update = updateQuery,
+                delete = deleteQuery
+            });
         }
         [HttpPost]
         public IActionResult Login([FromBody] User model)
         {
             // TODO: validate credentials against the database later
             return Json(model);
+        }
+        [HttpPost]
+        public IActionResult Select([FromBody] User model)
+        {
+            string query = model.GenerateSelectQuery("Users");
+            return Json(new { query = query });
+        }
+
+        [HttpPost]
+        public IActionResult Update([FromBody] User model)
+        {
+            string query = model.GenerateUpdateQuery("Users");
+            return Json(new { query = query });
+        }
+
+        [HttpPost]
+        public IActionResult Delete([FromBody] User model)
+        {
+            string query = model.GenerateDeleteQuery("Users");
+            return Json(new { query = query });
         }
     }
 }
