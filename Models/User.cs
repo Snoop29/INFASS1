@@ -18,7 +18,7 @@
             Values = new object[] { fullName, email, password };
         }
 
-        // dynamic INSERT INTO query
+        //  INSERT INTO 
         public string GenerateInsertQuery(string tableName)
         {
             string query = "INSERT INTO " + tableName + " (";
@@ -44,8 +44,8 @@
             return query;
         }
 
-        // dynamic SELECT query — fetches a user by Id
-        public string GenerateSelectQuery(string tableName, int id, string[]Fields)
+        //  SELECT 
+        public string GenerateSelectQuery(string tableName)
         {
             string query = "SELECT ";
             for (int i = 0; i < Fields.Length; i++)
@@ -58,8 +58,8 @@
             return query;
         }
 
-        // dynamic UPDATE query — updates all fields for the user matching this Id
-        public string GenerateUpdateQuery(string tableName, int id, string[]Fields)
+        //  UPDATE  
+        public string GenerateUpdateQuery(string tableName)
         {
             string query = "UPDATE " + tableName + " SET ";
             for (int i = 0; i < Fields.Length; i++)
@@ -79,7 +79,7 @@
             return query;
         }
 
-        // dynamic DELETE query — deletes the user matching this Id
+        // DELETE  
         public string GenerateDeleteQuery(string tableName)
         {
             string query = "DELETE FROM " + tableName + " WHERE Id = " + Id;

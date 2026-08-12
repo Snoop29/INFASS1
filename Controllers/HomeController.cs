@@ -32,7 +32,6 @@ namespace BOOTSTRAP.Controllers
             return View();
         }
         [HttpPost]
-        [HttpPost]
         public IActionResult Register([FromBody] RegisterViewModel model)
         {
             User user = new User(model.FullName, model.Email, model.Password);
@@ -53,7 +52,6 @@ namespace BOOTSTRAP.Controllers
         [HttpPost]
         public IActionResult Login([FromBody] User model)
         {
-            // TODO: validate credentials against the database later
             return Json(model);
         }
         [HttpPost]
