@@ -37,9 +37,9 @@ namespace BOOTSTRAP.Controllers
             User user = new User(model.FullName, model.Email, model.Password);
 
             string insertQuery = user.GenerateInsertQuery("Users");
-            string selectQuery = user.GenerateSelectQuery("Users");
-            string updateQuery = user.GenerateUpdateQuery("Users");
-            string deleteQuery = user.GenerateDeleteQuery("Users");
+            string selectQuery = user.GenerateSelectQuery("Users", "Id");
+            string updateQuery = user.GenerateUpdateQuery("Users", "Id");
+            string deleteQuery = user.GenerateDeleteQuery("Users", "Id");
 
             return Json(new
             {
@@ -49,30 +49,30 @@ namespace BOOTSTRAP.Controllers
                 delete = deleteQuery
             });
         }
-        [HttpPost]
-        public IActionResult Login([FromBody] User model)
-        {
-            return Json(model);
-        }
-        [HttpPost]
-        public IActionResult Select([FromBody] User model)
-        {
-            string query = model.GenerateSelectQuery("Users");
-            return Json(new { query = query });
-        }
+        //[HttpPost]
+        //public IActionResult Login([FromBody] User model)
+        //{
+        //    return Json(model);
+        //}
+        //[HttpPost]
+        //public IActionResult Select([FromBody] User model)
+        //{
+        //    string query = model.GenerateSelectQuery("Users");
+        //    return Json(new { query = query });
+        //}
 
-        [HttpPost]
-        public IActionResult Update([FromBody] User model)
-        {
-            string query = model.GenerateUpdateQuery("Users");
-            return Json(new { query = query });
-        }
+        //[HttpPost]
+        //public IActionResult Update([FromBody] User model)
+        //{
+        //    string query = model.GenerateUpdateQuery("Users");
+        //    return Json(new { query = query });
+        //}
 
-        [HttpPost]
-        public IActionResult Delete([FromBody] User model)
-        {
-            string query = model.GenerateDeleteQuery("Users");
-            return Json(new { query = query });
-        }
+        //[HttpPost]
+        //public IActionResult Delete([FromBody] User model)
+        //{
+        //    string query = model.GenerateDeleteQuery("Users");
+        //    return Json(new { query = query });
+        //}
     }
 }

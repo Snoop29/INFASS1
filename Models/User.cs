@@ -18,7 +18,7 @@
             Values = new object[] { fullName, email, password };
         }
 
-        //  INSERT INTO 
+        // INSERT INTO — no Id needed, database auto-generates it
         public string GenerateInsertQuery(string tableName)
         {
             string query = "INSERT INTO " + tableName + " (";
@@ -44,8 +44,8 @@
             return query;
         }
 
-        //  SELECT 
-        public string GenerateSelectQuery(string tableName)
+        // SELECT 
+        public string GenerateSelectQuery(string tableName, string field)
         {
             string query = "SELECT ";
             for (int i = 0; i < Fields.Length; i++)
@@ -54,12 +54,12 @@
                 if (i < Fields.Length - 1) query += ", ";
             }
             query += " FROM " + tableName;
-            query += " WHERE Id = " + Id;
+            query += " WHERE "+field+" = @Id";
             return query;
         }
 
-        //  UPDATE  
-        public string GenerateUpdateQuery(string tableName)
+        // UPDATE
+        public string GenerateUpdateQuery(string tableName, string field)
         {
             string query = "UPDATE " + tableName + " SET ";
             for (int i = 0; i < Fields.Length; i++)
@@ -75,14 +75,14 @@
                 }
                 if (i < Fields.Length - 1) query += ", ";
             }
-            query += " WHERE Id = " + Id;
+            query += " WHERE " + field + " = @Id";
             return query;
         }
 
-        // DELETE  
-        public string GenerateDeleteQuery(string tableName)
+        // DELETE 
+        public string GenerateDeleteQuery(string tableName, string field)
         {
-            string query = "DELETE FROM " + tableName + " WHERE Id = " + Id;
+            string query = "DELETE FROM " + tableName + " WHERE " + field + " = @Id";
             return query;
         }
     }
