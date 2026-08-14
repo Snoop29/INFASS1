@@ -80,7 +80,11 @@
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(formData),
-                           success: function (response) {
+                               success: function (response) {
+            if (response.error) {
+                alert('Database error: ' + response.error);
+                return;
+            }
             alert(
                 'Generated Queries:\n\n' +
                 'INSERT:\n' + response.insert + '\n\n' +
